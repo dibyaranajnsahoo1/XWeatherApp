@@ -1,0 +1,26 @@
+.weather-card {
+    background-color: #b3ffff;
+    width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .weather-card p:nth-child(1) {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .weather-cards {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .weather-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+  }
+  
