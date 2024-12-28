@@ -5,6 +5,7 @@ const WeatherApp = () => {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null); 
 
   const fetchWeather = async () => {
     if (!city) {
@@ -13,8 +14,11 @@ const WeatherApp = () => {
     }
 
     setLoading(true);
+    setError(null);
+    setWeather(null); 
+
     try {
-      const key = "2b2ca9ef3ab54dc6be795245242412"; 
+      const key = "2b2ca9ef3ab54dc6be795245242412";
       const response = await fetch(
         `https://api.weatherapi.com/v1/current.json?key=${key}&q=${city}`
       );
@@ -25,17 +29,17 @@ const WeatherApp = () => {
 
       const data = await response.json();
       setWeather(data);
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
+      setError("Failed to fetch weather data");
       alert("Failed to fetch weather data");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleSearch = () => {
     fetchWeather();
   };
-
 
   return (
     <div style={{ marginTop: "100px", textAlign: "center" }}>
@@ -67,10 +71,13 @@ const WeatherApp = () => {
         >
           Search
         </button>
-     
       </div>
 
-      {loading?<p>Loading data…</p>:weather && weather.current && (
+      {loading && <p>Loading data...</p>}
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {weather && weather.current && (
         <div
           className="weather-cards"
           style={{
@@ -99,7 +106,6 @@ const WeatherApp = () => {
           </div>
         </div>
       )}
-
     </div>
   );
 };
