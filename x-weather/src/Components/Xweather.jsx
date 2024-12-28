@@ -36,6 +36,7 @@ const WeatherApp = () => {
     fetchWeather();
   };
 
+
   return (
     <div style={{ marginTop: "100px", textAlign: "center" }}>
       <div>
@@ -66,6 +67,7 @@ const WeatherApp = () => {
         >
           Search
         </button>
+     
       </div>
 
       {loading?<p>Loading data…</p>:weather && weather.current && (
@@ -98,7 +100,6 @@ const WeatherApp = () => {
         </div>
       )}
 
-      
     </div>
   );
 };
